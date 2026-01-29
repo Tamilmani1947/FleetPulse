@@ -1,90 +1,91 @@
-# FleetPulse 🚛 🛰️
+# FleetPulse
 
-FleetPulse is a high-performance, live GPS command center designed for real-time fleet tracking and monitoring. It features a reactive dashboard that visualizes asset movement on a global map, powered by a Flask backend and a modern React frontend.
+**FleetPulse** is a high-performance, live GPS command center designed for real-time fleet tracking and monitoring. It features a reactive dashboard that visualizes asset movement on a global map, powered by a lightweight Flask backend and a modern React frontend.
 
-🚀 Live Access
+#  Live Access
 
-Access the command center here:
+- Access the command center across your local network or via the production engine:
 
-Frontend: index.html (Local/Hosted)
+- **Frontend Terminal:** index.html (Local / Hosted via Dev Tunnels)
 
-Production API: https://fleetpulse-7xbu.onrender.com
+- **Live Demo** [Click here](https://tamilmani1947.github.io/FleetPulse/).
 
-✨ Features
+#  Key Features
 
-Real-time Synchronization: Assets update every 3 seconds to ensure precision tracking.
+## Real-time Synchronization
 
-Bi-directional Feedback:
+- Assets update every 3 seconds to ensure precision tracking. The map engine utilizes smooth marker transitions to reflect the latest telemetry data without jarring jumps.
 
-Go Live: Broadcast your own location as an "Admin Terminal" directly to the map.
+## Bi-directional Feedback
 
-Asset Focus: Click any unit to view detailed velocity and signal status.
+- **Go Live (Broadcast Mode):** Turn any mobile device into a tracking unit. By clicking "Share Location," your coordinates are broadcasted to the central radar as an active terminal.
 
-Auto-Cleanup Logic: Stale signals are automatically removed from the radar after 20 seconds of inactivity.
-
-Dark Mode UI: A premium, "glass-morphic" interface designed for low-light command centers.
-
-Cross-Platform: Works across web browsers and mobile terminals via geolocation API.
-
-🛠️ Technical Architecture
-
-Backend (Python/Flask)
-
-RESTful API: Handles asset updates, retrieval, and explicit removals.
-
-JSON Persistence: Uses fleet_data.json for lightweight, fast data storage.
-
-CORS Enabled: Configured for cross-origin resource sharing for seamless frontend integration.
-
-Frontend (React/Leaflet)
-
-Map Engine: Leaflet.js with CartoDB Dark Matter tiles.
-
-UI Framework: Tailwind CSS for responsive, modern styling.
-
-Icons: Lucide React for crisp, vector-based asset visualization.
-
-📂 Project Structure
-
-├── app.py              # Flask Backend API
-├── index.html          # React Frontend (CDN based)
-├── fleet_data.json     # Live Data Store (Auto-generated)
-└── App.js              # Legacy React Component logic
+- **Asset Focus:** Interactive map markers. Click any unit to pull up a glass-morphic detail panel showing live velocity, signal health, and unique telemetry IDs.
 
 
-⚙️ Installation & Setup
+## Cleanup
 
-1. Backend Setup
+- The backend features a Stale Signal Detector. If a vehicle stops transmitting for more than 20 seconds, it is automatically purged from the active radar to keep the command center clean and relevant.
 
-# Install dependencies
+# Command Center UI
+
+- **Dark Matter Mapping:** Utilizes CartoDB Dark Matter tiles for a premium, low-strain visual experience.
+
+- **Glass-morphism:** Modern UI panels featuring backdrop-blur effects, indigo accents, and high-contrast typography.
+
+# Technical Architecture
+
+**Backend (Python/Flask)**
+
+- API Layer: RESTful endpoints (/api/vehicles, /api/update) for high-frequency state management.
+
+- State Management: High-speed In-memory store for real-time responsiveness without disk I/O latency.
+
+- CORS Policy: Fully configured for cross-origin requests, enabling seamless communication between mobile devices and the central dashboard.
+
+**Frontend (React/Leaflet)**
+
+- Map Engine: Leaflet.js for high-performance geospatial rendering.
+
+- Styling: Tailwind CSS for a responsive, utility-first design.
+
+- Iconography: Lucide React for crisp, scalable vector icons.
+
+Project Structure
+```
+├── app.py              # Flask Backend API (Logic & In-Memory State)
+├── index.html          # Core Frontend (React + Leaflet + Tailwind)
+├── App.js              # Modular React Component logic (Reference)
+└── README.md           # Project documentation
+```
+
+# Installation & Setup
+
+# 1. Backend Environment
+
+Ensure you have Python installed. Then, initialize the micro-services:
+
+```
+## Install dependencies
 pip install flask flask-cors
 
-# Run the server
+# Start the server
 python app.py
+```
 
+- The server will initialize at `http://127.0.0.1:5000.`
 
-The server will start at http://127.0.0.1:5000.
+# 2. Frontend Deployment
 
-2. Frontend Setup
+The frontend is a single-file React application for maximum portability.
 
-Simply open index.html in any modern web browser.
+- Open `index.html` in any modern web browser.
 
-Note: Ensure the API_BASE_URL in index.html is pointing to your active backend (Localhost or Render).
+- Configuration: If running locally, ensure the API_BASE_URL in index.html points to your local Flask instance:
+  `const API_BASE_URL = "http://127.0.0.1:5000";`
 
-🤝 Contributing
+# Author
 
-Fork the Project.
-
-Create your Feature Branch (git checkout -b feature/NewAssetIcon).
-
-Commit your Changes.
-
-Push to the Branch.
-
-Open a Pull Request.
-
-👨‍💻 Author
-
-Tamilmani Developing tools for the future of logistics.
+[Tamilmani](https://github.com/Tamilmani1947/) — Developing tools for the future of logistics.
 
 Stay connected. Stay tracked. FleetPulse.
